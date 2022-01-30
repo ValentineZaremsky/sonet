@@ -1,0 +1,19 @@
+.nav {
+  grid-area: n;
+  padding: 16px;
+  background-color: burlywood;
+}
+
+.item,
+.link {
+  font-size: large;
+  color: maroon;
+}
+
+.item a {
+  text-decoration: none;
+}
+
+.active {
+  color: red;
+}

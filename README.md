@@ -68,3 +68,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+у кого  'React' is not defined  no-undef  нужно прописать сверху  руками эту строку : import React from 'react'        :) Димыч спасибо за курс )
+
+
+Если кто смотрит сейчас: вместо createRef, используйте useRef
+  const ref = useRef(null);
+  <input ref={ref}></input>
+Ну и дальше ref.current.value ...
+(createRef выдает ошибку -(0.0)-
+
+
+а вот от меня подарочек тем, кто будет учится по этому курсу с нуля (и тем, кто не знал), способ как обойтись без рефов:
+  const handleChange = (e) => {
+    props.writingPost(e.target.value);
+  }

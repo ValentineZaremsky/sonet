@@ -1,0 +1,20 @@
+.header {
+  grid-area: h;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: lightblue;
+}
+
+.header img {
+  height: 52px;
+  padding: 4px 16px;
+}
+
+.headName {
+  display: inline-block;
+  font-size: 40px;
+  font-weight: bold;
+  color: midnightblue;
+}

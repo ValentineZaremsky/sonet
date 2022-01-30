@@ -1,0 +1,57 @@
+.dialogsBlock {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  padding: 16px;
+  gap: 16px;
+}
+
+.dialogs {
+  background-color: transparent;
+}
+.dialogs a {
+  text-decoration: none;
+}
+
+.dialogs,
+.link {
+  color: darkblue;
+}
+
+.active {
+  color: red;
+}
+.dialog a {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 8px;
+  gap: 8px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.name {
+  display: inline-block;
+}
+
+.messages {
+  background-color: transparent;
+}
+
+.message {
+  margin: 8px;
+  padding: 8px 16px;
+  width: fit-content;
+  border-radius: 16px;
+  background-color: whitesmoke;
+  color: navy;
+}
+.left {
+  border-bottom-left-radius: 0px;
+}
+.right {
+  border-bottom-right-radius: 0px;
+}
