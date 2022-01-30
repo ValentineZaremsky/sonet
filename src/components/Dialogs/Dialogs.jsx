@@ -3,7 +3,6 @@ import css from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 
-//  ({ state, addMessage, updateMessage })
 const Dialogs = (props) => {
 
   let dialogsElements = props.dialogsPage.dialogs.map( d => <Dialog id={d.id} name={d.name} avatar={d.avatar} />);
@@ -12,12 +11,13 @@ const Dialogs = (props) => {
   let newMessageElement = React.createRef();
 
   let addNewMessage = () => {
-    props.addMessage();
+    props.dispatch({ type: 'ADD_MESSAGE' });
   }
 
   let onMessageChange = () => {
     let text = newMessageElement.current.value;
-    props.updateMessage(text);
+    let action = { type: 'UPDATE_MESSAGE', text: text };
+    props.dispatch(action);
   }
 
   return (

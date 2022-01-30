@@ -7,7 +7,6 @@ import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import './App.css';
 
-//  ({ _state, addPost, updatePost, addMessage, updateMessage })
 const App = (props) => {
   return (
     <div className='app-wrapper'>
@@ -18,15 +17,13 @@ const App = (props) => {
           <Route path='/profile' element={
             <Profile
               profilePage={props.state.profilePage}
-              addPost={props.addPost}
-              updatePost={props.updatePost}
+              dispatch={props.dispatch}
             />
           } />
           <Route path='/dialogs/*' element={
             <Dialogs
               dialogsPage={props.state.dialogsPage}
-              addMessage={props.addMessage}
-              updateMessage={props.updateMessage}
+              dispatch={props.dispatch}
             />
           } />
           <Route path='/news' element={

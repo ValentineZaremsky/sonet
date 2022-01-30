@@ -5,7 +5,6 @@ import css from './Navbar.module.css';
 
 const setActive = ({isActive}) => isActive ? css.active : css.link;
 
-//  ({ friendsBlock })
 const Navbar = (props) => {
   return (
     <nav className={css.nav}>
