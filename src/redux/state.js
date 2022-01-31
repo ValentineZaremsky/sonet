@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST = 'UPDATE-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
+
 let store = {
   _state: {
     profilePage: {
@@ -24,7 +29,7 @@ let store = {
         { id: 2, text: 'How are you?', align: 'right' },
         { id: 3, text: 'Yo',           align: 'left'  },
         { id: 4, text: 'Hello!',       align: 'left'  },
-        { id: 5, text: 'Yo',           align: 'right' }
+        { id: 8, text: 'Yo',           align: 'right' }
       ],
       newMessageText: 'React Kabzda'
     },
@@ -50,34 +55,55 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD_POST') {
+    if (action.type === ADD_POST) {
       let newPost = {
-        id: this._state.profilePage.posts.length + 1,
+        id: this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1,
         text: this._state.profilePage.newPostText,
         likes: 0
       };
       this._state.profilePage.posts.push(newPost);
       this._state.profilePage.newPostText = '';
       this._callSubscriber(this._state);
-    } else if (action.type === 'UPDATE_POST') {
+    } else
+    if (action.type === UPDATE_POST) {
       this._state.profilePage.newPostText = action.text;
       this._callSubscriber(this._state);
-    } else if (action.type === 'ADD_MESSAGE') {
+    } else
+    if (action.type === ADD_MESSAGE) {
       let newMessage = {
-        id: this._state.dialogsPage.messages.length + 1,
+        id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1,
         text: this._state.dialogsPage.newMessageText,
         align: 'right'
       };
       this._state.dialogsPage.messages.push(newMessage);
       this._state.dialogsPage.newMessageText = '';
       this._callSubscriber(this._state);
-    } else if (action.type === 'UPDATE_MESSAGE') {
+    } else
+    if (action.type === UPDATE_MESSAGE) {
       this._state.dialogsPage.newMessageText = action.text;
       this._callSubscriber(this._state);
     }
   }
 }
 
-window.store = store;
+export const addPostActionCreator = () => ({
+  type: ADD_POST
+})
+
+export const updatePostActionCreator = (value) => ({
+  type: UPDATE_POST,
+  text: value
+})
+
+export const addMessageActionCreator = () => ({
+  type: ADD_MESSAGE
+})
+
+export const updateMessageActionCreator = (value) => ({
+  type: UPDATE_MESSAGE,
+  text: value
+})
 
 export default store;
+
+window.store = store;
