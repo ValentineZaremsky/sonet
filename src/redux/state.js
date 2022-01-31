@@ -12,7 +12,7 @@ let store = {
         { id: 3, text: "I can to map!",             likes:  1 },
         { id: 4, text: "And now I can pass props!", likes: 25 }
       ],
-      newPostText: 'IT-Kamasutra.com'
+      newPostText: ''
     },
     dialogsPage: {
       dialogs: [
@@ -31,7 +31,7 @@ let store = {
         { id: 4, text: 'Hello!',       align: 'left'  },
         { id: 8, text: 'Yo',           align: 'right' }
       ],
-      newMessageText: 'React Kabzda'
+      newMessageText: ''
     },
     friendsBlock: {
       friends: [
@@ -56,13 +56,15 @@ let store = {
 
   dispatch(action) {
     if (action.type === ADD_POST) {
-      let newPost = {
-        id: this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1,
-        text: this._state.profilePage.newPostText,
-        likes: 0
-      };
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = '';
+      if (this._state.profilePage.newPostText !== '') {
+        let newPost = {
+          id: this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1,
+          text: this._state.profilePage.newPostText,
+          likes: 0
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+      }
       this._callSubscriber(this._state);
     } else
     if (action.type === UPDATE_POST) {
@@ -70,13 +72,15 @@ let store = {
       this._callSubscriber(this._state);
     } else
     if (action.type === ADD_MESSAGE) {
-      let newMessage = {
-        id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1,
-        text: this._state.dialogsPage.newMessageText,
-        align: 'right'
-      };
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
+      if (this._state.dialogsPage.newMessageText !== '') {
+        let newMessage = {
+          id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1,
+          text: this._state.dialogsPage.newMessageText,
+          align: 'right'
+        };
+        this._state.dialogsPage.messages.push(newMessage);
+        this._state.dialogsPage.newMessageText = '';
+      }
       this._callSubscriber(this._state);
     } else
     if (action.type === UPDATE_MESSAGE) {

@@ -44,6 +44,7 @@
 .message {
   margin: 8px;
   padding: 8px 16px;
+  max-width: 75%;
   width: fit-content;
   border-radius: 16px;
   background-color: whitesmoke;
@@ -54,4 +55,24 @@
 }
 .right {
   border-bottom-right-radius: 0px;
+}
+.newMessage {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 8px 0;
+}
+.newMessage textarea {
+  margin: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  min-height: 48px;
+  width: 100%;
+}
+.newMessage button {
+  margin: 8px;
+  padding: 8px 16px;
+  width: fit-content;
+  border-radius: 8px;
 }
