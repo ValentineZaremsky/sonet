@@ -38,11 +38,15 @@
 }
 
 .messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   background-color: transparent;
 }
 
 .message {
-  margin: 8px;
+  margin: 2px;
   padding: 8px 16px;
   max-width: 75%;
   width: fit-content;
@@ -51,9 +55,11 @@
   color: navy;
 }
 .left {
+  align-self: flex-start;
   border-bottom-left-radius: 0px;
 }
 .right {
+  align-self: flex-end;
   border-bottom-right-radius: 0px;
 }
 .newMessage {

@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST = 'UPDATE-POST';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
+import profileReducer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
+import friendsReducer from './friends-reducer';
 
 let store = {
   _state: {
@@ -55,58 +54,13 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      if (this._state.profilePage.newPostText !== '') {
-        let newPost = {
-          id: this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1,
-          text: this._state.profilePage.newPostText,
-          likes: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-      }
-      this._callSubscriber(this._state);
-    } else
-    if (action.type === UPDATE_POST) {
-      this._state.profilePage.newPostText = action.text;
-      this._callSubscriber(this._state);
-    } else
-    if (action.type === ADD_MESSAGE) {
-      if (this._state.dialogsPage.newMessageText !== '') {
-        let newMessage = {
-          id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1,
-          text: this._state.dialogsPage.newMessageText,
-          align: 'right'
-        };
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = '';
-      }
-      this._callSubscriber(this._state);
-    } else
-    if (action.type === UPDATE_MESSAGE) {
-      this._state.dialogsPage.newMessageText = action.text;
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage  = profileReducer(this._state.profilePage,  action);
+    this._state.dialogsPage  = dialogsReducer(this._state.dialogsPage,  action);
+    this._state.friendsBlock = friendsReducer(this._state.friendsBlock, action);
+
+    this._callSubscriber(this._state);
   }
 }
-
-export const addPostActionCreator = () => ({
-  type: ADD_POST
-})
-
-export const updatePostActionCreator = (value) => ({
-  type: UPDATE_POST,
-  text: value
-})
-
-export const addMessageActionCreator = () => ({
-  type: ADD_MESSAGE
-})
-
-export const updateMessageActionCreator = (value) => ({
-  type: UPDATE_MESSAGE,
-  text: value
-})
 
 export default store;
 
