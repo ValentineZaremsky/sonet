@@ -6,7 +6,7 @@ import { addPostActionCreator, updatePostActionCreator } from '../../../redux/pr
 const MyPosts = (props) => {
   let state = props.profilePage;
 
-  let postsElements = state.posts.map( p => <Post message={p.text} likes={p.likes} /> );
+  let postsElements = state.posts.map( p => <Post key={p.id} message={p.text} likes={p.likes} /> );
   let newPostText = state.newPostText;
 
   let onSendPost = () => {

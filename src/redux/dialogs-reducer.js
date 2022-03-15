@@ -31,13 +31,18 @@ const dialogsReducer = (state = initialState, action) => {
           text: state.newMessageText,
           align: 'right'
         };
-        state.messages.push(newMessage);
-        state.newMessageText = '';
+        return {
+          ...state,
+          messages: [...state.messages, newMessage],
+          newMessageText: ''
+        };
       }
       return state;
     case UPDATE_MESSAGE:
-      state.newMessageText = action.text;
-      return state;
+      return  {
+        ...state,
+        newMessageText: action.text
+      };
     default:
       return state;
   }

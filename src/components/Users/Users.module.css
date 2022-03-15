@@ -1,0 +1,68 @@
+.usersPage {
+    padding: 16px;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 640px;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  gap: 16px;
+  border-radius: 16px;
+  border: 1px solid aliceblue;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+.name {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.email {
+  font-size: 0.9em;
+  font-style: italic;
+}
+.status {
+  font-size: 0.9em;
+  font-style: italic;
+}
+.status::before,
+.status::after {
+  content: '"';
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}

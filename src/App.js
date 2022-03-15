@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Users/UsersContainer';
 import News from './components/News/News';
 import './App.css';
 
@@ -11,7 +12,7 @@ const App = (props) => {
   return (
     <div className='app-wrapper'>
       <Header />
-      <Navbar friendsBlock={props.state.friendsBlock} />
+      <Navbar />            {/* friendsBlock={props.state.friendsBlock} */}
       <div className='app-wrapper-content'>
         <Routes>
           <Route path='/profile' element={
@@ -22,6 +23,9 @@ const App = (props) => {
           } />
           <Route path='/news' element={
             <News />
+          } />
+          <Route path='/users' element={
+            <UsersContainer />
           } />
         </Routes>
       </div>
