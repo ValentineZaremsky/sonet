@@ -1,0 +1,16 @@
+.loader {
+  margin: 0 0 2em;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  padding: 1em;
+  margin: 0 auto 1em;
+  display: inline-block;
+  vertical-align: top;
+}
+
+svg path,
+svg rect {
+  /* fill: #FF6700; */
+  fill: midnightblue;
+}
