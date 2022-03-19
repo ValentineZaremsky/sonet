@@ -4,32 +4,32 @@ import * as axios from 'axios';
 import Users from './Users'
 import Preloader from '../Preloader/Preloader'
 import {
-  followActionCreator,
-  unfollowActionCreator,
-  setUsersActionCreator,
-  setCurrentPageActionCreator,
-  setIsFetchingActionCreator
+  setUsers,
+  followUser,
+  unfollowUser,
+  setCurrentPage,
+  setIsFetching
 } from '../../redux/users-reducer'
 
 class UsersContainer extends React.Component {
 
   componentDidMount() {
-    this.props.toggleIsFetching(true);
+    this.props.setIsFetching(true);
     axios
     .get(`https://randomuser.me/api/?seed=kamasutra&results=${this.props.pageSize}&page=${this.props.currentPage}`)
     .then(response => {
-      this.props.toggleIsFetching(false);
+      this.props.setIsFetching(false);
       this.props.setUsers(response.data.results);
     });
   }
 
   onPageChange = (pageNumber) => {
     this.props.setCurrentPage(pageNumber);
-    this.props.toggleIsFetching(true);
+    this.props.setIsFetching(true);
     axios
     .get(`https://randomuser.me/api/?seed=kamasutra&results=${this.props.pageSize}&page=${pageNumber}`)
     .then(response => {
-      this.props.toggleIsFetching(false);
+      this.props.setIsFetching(false);
       this.props.setUsers(response.data.results);
     });
   }
@@ -62,24 +62,13 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    followUser: (userId) => {
-      dispatch(followActionCreator(userId))
-    },
-    unfollowUser: (userId) => {
-      dispatch(unfollowActionCreator(userId))
-    },
-    setUsers: (users) => {
-      dispatch(setUsersActionCreator(users))
-    },
-    setCurrentPage: (currentPage) => {
-      dispatch(setCurrentPageActionCreator(currentPage))
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(setIsFetchingActionCreator(isFetching))
-    }
+export default connect(
+  mapStateToProps,
+  {
+    setUsers,
+    followUser,
+    unfollowUser,
+    setCurrentPage,
+    setIsFetching
   }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+)(UsersContainer);
