@@ -1,30 +1,20 @@
 import React from 'react';
+import { useMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as axios from 'axios';
 import Profile from './Profile';
-// import Preloader from '../Preloader/Preloader';
 import { setUserProfile } from '../../redux/profile-reducer';
 
 class ProfileContainer extends React.Component {
 
   componentDidMount() {
+    let userId = this.props.match ? this.props.match.params.userId : 2;
     axios
-    .get('https://social-network.samuraijs.com/api/1.0/profile/2')
+    .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
     .then(response => {
       this.props.setUserProfile(response.data);
     });
   }
-
-  // onPageChange = (pageNumber) => {
-  //   this.props.setCurrentPage(pageNumber);
-  //   this.props.setIsFetching(true);
-  //   axios
-  //   .get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`)
-  //   .then(response => {
-  //     this.props.setIsFetching(false);
-  //     this.props.setUsers(response.data.items);
-  //   });
-  // }
 
   render() {
     return (
@@ -39,9 +29,14 @@ const mapStateToProps = (state) => {
   }
 }
 
+const ProfileURLMatch = (props) => {
+  const match = useMatch('/profile/:userId/');
+  return <ProfileContainer {...props} match={match} />;
+}
+
 export default connect(
   mapStateToProps,
   {
     setUserProfile
   }
-)(ProfileContainer);
+)(ProfileURLMatch);

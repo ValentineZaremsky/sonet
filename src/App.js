@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
+import NoMatch from './components/NoMatch/NoMatch';
 import News from './components/News/News';
 import './App.css';
 
@@ -15,7 +16,10 @@ const App = (props) => {
       <Navbar />            {/* friendsBlock={props.state.friendsBlock} */}
       <div className='app-wrapper-content'>
         <Routes>
-          <Route path='/profile/*' element={
+          <Route path='/profile/:userId' element={
+            <ProfileContainer />
+          } />
+          <Route path='/profile/' element={
             <ProfileContainer />
           } />
           <Route path='/dialogs/*' element={
@@ -27,6 +31,7 @@ const App = (props) => {
           <Route path='/news' element={
             <News />
           } />
+          <Route path="*" element={<NoMatch />} />
         </Routes>
       </div>
     </div>
