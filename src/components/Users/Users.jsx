@@ -1,18 +1,28 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { ReactComponent as UserPhoto } from '../../assets/icons/avatar-male.svg';
 import css from './Users.module.css';
 
 let Users = (props) => {
 
-  let pagesCount = Math.ceil(props.usersCount / props.pageSize);
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
   let pages = [];
-  // for (let p = Math.max(this.props.currentPage - 5, 1); p <= Math.max(1, Math.min(this.props.currentPage + 5, pagesCount)); p++) {
-  for (let p = 1; p <= pagesCount; p++) {
+  let quant = 7;
+  for (let p = Math.max(props.currentPage - quant, 1); p <= Math.max(1, Math.min(props.currentPage + quant, pagesCount)); p++) {
     pages.push(p);
   }
 
   return (
     <div className={css.usersPage}>
       <div className={css.pageLinks}>
+        {props.currentPage > quant + 1
+          ? <>
+              <span className={css.pageNumber} onClick={(e) => {props.onPageChange(1)}}>{"|←"}</span>
+              <span>{"..."}</span>
+            </>
+          : ""
+        }
         {pages.map( p => {
           return (
             <span
@@ -23,14 +33,30 @@ let Users = (props) => {
             </span>
           )
         })}
+        {props.currentPage < pagesCount - quant
+          ? <>
+              <span>{"..."}</span>
+              <span
+                className={css.pageNumber}
+                onClick={(e) => {props.onPageChange(pagesCount)}}>
+                {"→|"}
+              </span>
+            </>
+          : ""
+        }
       </div>
 
       {props.users.map( u => {
         return (
-          <div className={css.user} key={u.id.value + u.name.last}>
+          <div className={css.user} key={u.id}>
             <div className={css.leftSide}>
               <div>
-                <img className={css.avatar} src={u.picture.medium} alt="Avatar" />
+                <NavLink to={`/profile/${u.id}`}>
+                  { u.photos.small
+                    ? <img className={css.avatar} src={u.photos.small} alt="Avatar" />
+                    : <UserPhoto className={css.avatar}/>
+                  }
+                </NavLink>
               </div>
               <div>
                 {u.followed
@@ -41,12 +67,15 @@ let Users = (props) => {
             </div>
             <div className={css.rightSide}>
               <div className={css.info}>
-                <div className={css.name}>{u.name.first} {u.name.last}</div>
-                <div className={css.email}>{u.email}</div>
+                <div className={css.name}>{u.name}</div>
+                {u.status
+                  ? <div className={css.status}>{u.status}</div>
+                  : <div className={css.email}>{"\u00A0"}</div>
+                }
               </div>
               <div className={css.location}>
-                <div>{u.location.country}</div>
-                <div>{u.location.city}</div>
+                <div>{false ? "u.location.country" : "\u00A0"}</div>
+                <div>{false ? "u.location.city" : "\u00A0"}</div>
               </div>
             </div>
           </div>

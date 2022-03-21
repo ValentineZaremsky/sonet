@@ -20,6 +20,7 @@
 }
 .pageNumber {
   cursor: pointer;
+  font-size: 0.9em;
   padding: 0 4px;
 }
 
@@ -47,6 +48,7 @@
   width: 80px;
   height: 80px;
   border-radius: 40px;
+  color: hsl(210, 25%, 66%);
 }
 
 .info {
@@ -67,6 +69,8 @@
 .status {
   font-size: 0.9em;
   font-style: italic;
+  word-wrap: break-word;
+  /* word-break: break-all; */
 }
 .status::before,
 .status::after {
