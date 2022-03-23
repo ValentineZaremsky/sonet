@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios';
+// import * as axios from 'axios';
+import { followAPI } from '../../api/api'
 import { ReactComponent as UserPhoto } from '../../assets/icons/avatar-male.svg';
 import css from './Users.module.css';
 
@@ -64,15 +65,11 @@ let Users = (props) => {
                   ? <button onClick={() => {
 
 
-                    axios
-                    .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                      withCredentials: true,
-                      headers: {
-                        "api-key": "1fb48d8f-634a-4423-a834-db9c63a9e394"
-                      }
-                    })
-                    .then(response => {
-                      if (response.data.resultCode === 0) {
+                    // axios
+                    // .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`)
+                    followAPI.unfollow(u.id)
+                    .then(data => {
+                      if (data.resultCode === 0) {
                         props.unfollowUser(u.id)
                       }
                     });
@@ -82,15 +79,11 @@ let Users = (props) => {
                   : <button onClick={() => {
 
 
-                    axios
-                    .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                      withCredentials: true,
-                      headers: {
-                        "api-key": "1fb48d8f-634a-4423-a834-db9c63a9e394"
-                      }
-                    })
-                    .then(response => {
-                      if (response.data.resultCode === 0) {
+                    // axios
+                    // .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {})
+                    followAPI.follow(u.id)
+                    .then(data => {
+                      if (data.resultCode === 0) {
                         props.followUser(u.id)
                       }
                     });
