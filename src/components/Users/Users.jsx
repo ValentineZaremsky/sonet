@@ -18,7 +18,7 @@ let Users = (props) => {
       <div className={css.pageLinks}>
         {props.currentPage > quant + 1
           ? <>
-              <span className={css.pageNumber} onClick={(e) => {props.onPageChange(1)}}>{"|←"}</span>
+              <span className={css.pageNumber} onClick={(e) => {props.onPageChange(1)}}>{"|◄"}</span>
               <span>{"..."}</span>
             </>
           : ""
@@ -39,7 +39,7 @@ let Users = (props) => {
               <span
                 className={css.pageNumber}
                 onClick={(e) => {props.onPageChange(pagesCount)}}>
-                {"→|"}
+                {"►|"}
               </span>
             </>
           : ""

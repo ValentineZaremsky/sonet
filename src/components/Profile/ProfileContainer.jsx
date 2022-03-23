@@ -8,7 +8,7 @@ import { setUserProfile } from '../../redux/profile-reducer';
 class ProfileContainer extends React.Component {
 
   componentDidMount() {
-    let userId = this.props.match ? this.props.match.params.userId : 2;
+    let userId = this.props.match ? this.props.match.params.userId : 22995;
     axios
     .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
     .then(response => {

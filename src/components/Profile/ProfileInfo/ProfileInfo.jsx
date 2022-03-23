@@ -26,27 +26,31 @@ const ProfileInfo = (props) => {
 
         <div className={css.descriptionBlock}>
           <div className={css.name}>{props.profile.fullName}</div>
-          <div className={css.userId}>{props.profile.userId}</div>
-          {props.profile.aboutMe
-            ? <div className={css.status}>{props.profile.aboutMe}</div>
-            : <div className={css.userId}>{"\u00A0"}</div>
-          }
-          <div className={css.job}>{props.profile.lookingForAJob ? "Looking for a job" : "\u00A0"}</div>
-          {props.profile.lookingForAJobDescription
-            ? <div className={css.jobDesc}>{props.profile.lookingForAJobDescription}</div>
-            : <div className={css.userId}>{"\u00A0"}</div>
-          }
-        </div>
+          <div className={css.infoBlock}>
+            <div className={css.statusBlock}>
+              <div className={css.userId}>{props.profile.userId}</div>
+              {props.profile.aboutMe
+                ? <div className={css.status}>{props.profile.aboutMe}</div>
+                : <div className={css.userId}>{"\u00A0"}</div>
+              }
+              <div className={css.job}>{props.profile.lookingForAJob ? "Looking for a job" : "\u00A0"}</div>
+              {props.profile.lookingForAJobDescription
+                ? <div className={css.jobDesc}>{props.profile.lookingForAJobDescription}</div>
+                : <div className={css.userId}>{"\u00A0"}</div>
+              }
+            </div>
 
-        <div className={css.contactsBlock}>
-          <div className={css.contacts}>{props.profile.contacts.facebook  ? "facebook: "  + props.profile.contacts.facebook  : ""}</div>
-          <div className={css.contacts}>{props.profile.contacts.website   ? "website: "   + props.profile.contacts.website   : ""}</div>
-          <div className={css.contacts}>{props.profile.contacts.vk        ? "vk: "        + props.profile.contacts.vk        : ""}</div>
-          <div className={css.contacts}>{props.profile.contacts.twitter   ? "twitter: "   + props.profile.contacts.twitter   : ""}</div>
-          <div className={css.contacts}>{props.profile.contacts.instagram ? "instagram: " + props.profile.contacts.instagram : ""}</div>
-          <div className={css.contacts}>{props.profile.contacts.youtube   ? "youtube: "   + props.profile.contacts.youtube   : ""}</div>
-          <div className={css.contacts}>{props.profile.contacts.github    ? "github: "    + props.profile.contacts.github    : ""}</div>
-          <div className={css.contacts}>{props.profile.contacts.mainLink  ? "mainLink: "  + props.profile.contacts.mainLink  : ""}</div>
+            <div className={css.contactsBlock}>
+              <div className={css.contacts}>{props.profile.contacts.facebook  ? "facebook: "  + props.profile.contacts.facebook  : ""}</div>
+              <div className={css.contacts}>{props.profile.contacts.website   ? "website: "   + props.profile.contacts.website   : ""}</div>
+              <div className={css.contacts}>{props.profile.contacts.vk        ? "vk: "        + props.profile.contacts.vk        : ""}</div>
+              <div className={css.contacts}>{props.profile.contacts.twitter   ? "twitter: "   + props.profile.contacts.twitter   : ""}</div>
+              <div className={css.contacts}>{props.profile.contacts.instagram ? "instagram: " + props.profile.contacts.instagram : ""}</div>
+              <div className={css.contacts}>{props.profile.contacts.youtube   ? "youtube: "   + props.profile.contacts.youtube   : ""}</div>
+              <div className={css.contacts}>{props.profile.contacts.github    ? "github: "    + props.profile.contacts.github    : ""}</div>
+              <div className={css.contacts}>{props.profile.contacts.mainLink  ? "mainLink: "  + props.profile.contacts.mainLink  : ""}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
