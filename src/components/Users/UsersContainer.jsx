@@ -9,7 +9,8 @@ import {
   unfollowUser,
   setCurrentPage,
   setTotalUsersCount,
-  setIsFetching
+  setIsFetching,
+  setFollowingProgress
 } from '../../redux/users-reducer'
 
 class UsersContainer extends React.Component {
@@ -39,13 +40,15 @@ class UsersContainer extends React.Component {
       <>
         { this.props.isFetching ? <Preloader /> : null }
         <Users
-          users           = {this.props.users}
-          pageSize        = {this.props.pageSize}
-          currentPage     = {this.props.currentPage}
-          totalUsersCount = {this.props.totalUsersCount}
-          unfollowUser    = {this.props.unfollowUser}
-          followUser      = {this.props.followUser}
-          onPageChange    = {this.onPageChange}
+          users                = {this.props.users}
+          pageSize             = {this.props.pageSize}
+          currentPage          = {this.props.currentPage}
+          totalUsersCount      = {this.props.totalUsersCount}
+          unfollowUser         = {this.props.unfollowUser}
+          followUser           = {this.props.followUser}
+          onPageChange         = {this.onPageChange}
+          followingInProgress  = {this.props.followingInProgress}
+          setFollowingProgress = {this.props.setFollowingProgress}
         />
       </>
     )
@@ -54,11 +57,12 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users:           state.usersPage.users,
-    pageSize:        state.usersPage.pageSize,
-    currentPage:     state.usersPage.currentPage,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    isFetching:      state.usersPage.isFetching
+    users:               state.usersPage.users,
+    pageSize:            state.usersPage.pageSize,
+    currentPage:         state.usersPage.currentPage,
+    totalUsersCount:     state.usersPage.totalUsersCount,
+    isFetching:          state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   }
 }
 
@@ -70,6 +74,7 @@ export default connect(
     unfollowUser,
     setCurrentPage,
     setTotalUsersCount,
-    setIsFetching
+    setIsFetching,
+    setFollowingProgress
   }
 )(UsersContainer);
