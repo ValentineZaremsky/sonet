@@ -6,6 +6,7 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import NoMatch from './components/NoMatch/NoMatch';
+import Login from './components/Login/Login';
 import News from './components/News/News';
 import './App.css';
 
@@ -27,6 +28,9 @@ const App = (props) => {
           } />
           <Route path='/news' element={
             <News />
+          } />
+          <Route path='/login' element={
+            <Login />
           } />
           <Route path="*" element={<NoMatch />} />
         </Routes>

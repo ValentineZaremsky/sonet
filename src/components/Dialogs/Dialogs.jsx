@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import css from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
@@ -18,6 +19,9 @@ const Dialogs = (props) => {
     let text = event.target.value;
     props.changeMessage(text);
   }
+
+  if (!props.isAuth)
+    return <Navigate to='/login'/>
 
   return (
     <div className={css.dialogsBlock}>
