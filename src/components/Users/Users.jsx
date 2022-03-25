@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { followAPI } from '../../api/api'
 import { ReactComponent as UserPhoto } from '../../assets/icons/avatar-male.svg';
 import css from './Users.module.css';
 
@@ -65,30 +64,16 @@ let Users = (props) => {
               </div>
               <div>
                 {u.followed
-                ? <button disabled={props.followingInProgress.includes(u.id)} onClick={() => {
-
-                    props.setFollowingProgress(true, u.id);
-                    followAPI.unfollow(u.id)
-                    .then(data => {
-                      if (data.resultCode === 0) {
-                        props.unfollowUser(u.id)
-                      }
-                      props.setFollowingProgress(false, u.id);
-                    });
-
-                  }}>Unfollow</button>
-                : <button disabled={props.followingInProgress.includes(u.id)} onClick={() => {
-
-                    props.setFollowingProgress(true, u.id);
-                    followAPI.follow(u.id)
-                    .then(data => {
-                      if (data.resultCode === 0) {
-                        props.followUser(u.id)
-                      }
-                      props.setFollowingProgress(false, u.id);
-                    });
-
-                  }}>Follow</button>
+                ? <button
+                    disabled={props.followingInProgress.includes(u.id)}
+                    onClick={() => {props.unfollow(u.id)}}>
+                    Unfollow
+                  </button>
+                : <button
+                    disabled={props.followingInProgress.includes(u.id)}
+                    onClick={() => {props.follow(u.id)}}>
+                    Follow
+                  </button>
                 }
               </div>
             </div>
