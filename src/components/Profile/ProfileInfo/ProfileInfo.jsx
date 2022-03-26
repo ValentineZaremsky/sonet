@@ -1,5 +1,5 @@
 import React from 'react';
-import Preloader from '../../Preloader/Preloader';
+import Preloader from '../../common/Preloader/Preloader';
 import { ReactComponent as UserPhoto } from '../../../assets/icons/avatar-male.svg';
 import css from './ProfileInfo.module.css';
 
