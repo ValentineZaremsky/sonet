@@ -1,6 +1,7 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import { ReactComponent as UserPhoto } from '../../../assets/icons/avatar-male.svg';
+import Status from '../Status/Status'
 import css from './ProfileInfo.module.css';
 
 
@@ -29,6 +30,7 @@ const ProfileInfo = (props) => {
           <div className={css.infoBlock}>
             <div className={css.statusBlock}>
               <div className={css.userId}>{props.profile.userId}</div>
+              <Status status={"Hello, World!"}/>
               {props.profile.aboutMe
                 ? <div className={css.status}>{props.profile.aboutMe}</div>
                 : <div className={css.userId}>{"\u00A0"}</div>
