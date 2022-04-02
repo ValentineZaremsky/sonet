@@ -38,7 +38,7 @@ class Status extends React.Component {
               autoFocus
               onChange={this.onStatusChange}
               onBlur={this.deactivateEditMode}
-              value={this.props.status}
+              value={this.state.status}
             />
           </div>
         : <div>

@@ -1,3 +1,49 @@
 .login {
-    padding: 16px;
+  padding: 16px;
+}
+
+.form {
+  width: 240px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background-color: whitesmoke;
+}
+
+.form input[type='text'],
+.form input[type='email'],
+.form input[type='password'],
+.form textarea {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+.form button[type='submit'] {
+  font-size: 14px;
+  width: 100%;
+  padding: 6px 12px;
+  margin: 10px 0 10px;
+  border-radius: 4px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 4px;
+}
+.checkbox {
+  flex-direction: row;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.control label {
+  font-size: 0.9em;
+  margin-bottom: 2px;
 }
