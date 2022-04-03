@@ -43,7 +43,7 @@ class Status extends React.Component {
           </div>
         : <div>
             <span onDoubleClick={this.activateEditMode}>
-              {this.props.status || "--------"}
+              {this.props.status || "Type here something about you"}
             </span>
           </div>
         }

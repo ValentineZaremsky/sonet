@@ -4,10 +4,16 @@ import css from './Post.module.css';
 const Post = (props) => {
   return (
     <div className={css.item}>
-      <img alt='Avatar' src='https://www.kindpng.com/picc/m/22-223941_transparent-avatar-png-male-avatar-icon-transparent-png.png' />
-      {props.message}
-      <div className={css.likes}>
-        <span>likes </span>{props.likes}
+      <div className={css.avatar}>
+        <img alt='Avatar' src='https://www.kindpng.com/picc/m/22-223941_transparent-avatar-png-male-avatar-icon-transparent-png.png' />
+      </div>
+      <div className={css.wrapper}>
+        <div className={css.message}>
+          {props.message}
+        </div>
+        <div className={css.likes}>
+          <span>Likes </span>{props.likes}
+        </div>
       </div>
     </div>
   )
