@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
 
 const initialState = {
   dialogs: [
@@ -16,45 +15,31 @@ const initialState = {
     { id: 2, text: 'How are you?', align: 'right' },
     { id: 3, text: 'Yo',           align: 'left'  },
     { id: 4, text: 'Hello!',       align: 'left'  },
-    { id: 8, text: 'Yo',           align: 'right' }
-  ],
-  newMessageText: ''
+    { id: 7, text: 'Yo',           align: 'right' }
+  ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case ADD_MESSAGE:
-      if (state.newMessageText !== '') {
-        let newMessage = {
-          id: state.messages[state.messages.length - 1].id + 1,
-          text: state.newMessageText,
-          align: 'right'
-        };
-        return {
-          ...state,
-          messages: [...state.messages, newMessage],
-          newMessageText: ''
-        };
-      }
-      return state;
-    case UPDATE_MESSAGE:
-      return  {
+      let newMessage = {
+        id: state.messages[state.messages.length - 1].id + 1,
+        text: action.text,
+        align: 'right'
+      };
+      return {
         ...state,
-        newMessageText: action.text
+        messages: [...state.messages, newMessage]
       };
     default:
       return state;
   }
 }
 
-export const addMessageActionCreator = () => ({
-  type: ADD_MESSAGE
-})
-
-export const updateMessageActionCreator = (value) => ({
-  type: UPDATE_MESSAGE,
-  text: value
+export const addMessage = (message) => ({
+  type: ADD_MESSAGE,
+  text: message
 })
 
 export default dialogsReducer;

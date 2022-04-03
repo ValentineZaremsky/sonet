@@ -6,3 +6,30 @@
   padding: 10px;
   color: midnightblue;
 }
+
+.form {
+  width: 640px;
+}
+
+.newPost {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 8px 0;
+}
+.newPost textarea {
+  resize: vertical;
+  min-height: 48px;
+  width: 100%;
+  margin: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+.newPost button {
+  white-space: nowrap;
+  margin: 8px;
+  padding: 8px 16px;
+  width: fit-content;
+  border-radius: 8px;
+}
