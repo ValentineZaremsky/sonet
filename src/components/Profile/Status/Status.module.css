@@ -2,7 +2,21 @@
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 16px;
+}
+.status span {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
   padding: 8px 16px;
   border-radius: 8px;
   background-color: #c3d7f0;
+}
+.status input[type='text'] {
+  box-sizing: border-box;
+  font-size: 1em;
+  width: 100%;
+  padding: 9px 12px 7px;
+  border-radius: 8px;
+  outline: none;
 }

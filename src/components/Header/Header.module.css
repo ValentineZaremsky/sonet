@@ -20,9 +20,17 @@
 }
 
 .loginBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
   padding: 16px;
 }
 .loginBlock a {
   color: midnightblue;
   text-decoration: none;
+}
+.loginBlock button {
+  padding: 4px 8px;
+  border-radius: 4px;
 }

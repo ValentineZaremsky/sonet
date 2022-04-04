@@ -1,29 +1,34 @@
 import React from 'react';
+import { Navigate } from "react-router-dom";
+import { connect } from 'react-redux';
+import { login } from '../../redux/auth-reducer';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import TextError from '../common/TextError/TextError'
 import css from './Login.module.css';
 
-const initialValues = {
-  email: '',
-  pass: '',
-  remember: false
-}
-
-const validationSchema = Yup.object({
-  email: Yup.string()
-    .email('Invalid email format')
-    .required('Required'),
-  pass: Yup.string().required('Required')
-})
-
-const onSubmit = (values, submitProps) => {
-  console.log('Login data', values)
-  submitProps.setSubmitting(false)
-  submitProps.resetForm()
-}
 
 const LoginForm = (props) => {
+  const initialValues = {
+    email: '',
+    pass: '',
+    remember: false
+  }
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email('Invalid email format')
+      .required('Required'),
+    pass: Yup.string().required('Required')
+  })
+
+  const onSubmit = (values, submitProps) => {
+    console.log('Login data', values);
+    props.login(values.email, values.pass, values.remember);
+    submitProps.setSubmitting(false);
+    submitProps.resetForm();
+  }
+
   return (
     <Formik
       initialValues={initialValues}
@@ -60,12 +65,19 @@ const LoginForm = (props) => {
 }
 
 const Login = (props) => {
-  return (
-    <div className={css.login}>
-      <h1>Log in</h1>
-      <LoginForm />
-    </div>
-  )
+  if (props.isAuth)
+    return <Navigate to='/profile' />
+  else
+    return (
+      <div className={css.login}>
+        <h1>Log in</h1>
+        <LoginForm login={props.login}/>
+      </div>
+    )
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {login})(Login);
