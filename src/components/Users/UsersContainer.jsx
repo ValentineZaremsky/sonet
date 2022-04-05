@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+// import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import Preloader from '../common/Preloader/Preloader'
 import Users from './Users'
 import {
@@ -67,5 +67,6 @@ export default compose(
     unfollow,
     follow
   }),
-  withAuthRedirect
 )(UsersContainer);
+
+// withAuthRedirect
