@@ -14,9 +14,9 @@ export const authAPI = {
     .get(`auth/me`)
     .then(response => {return response.data})
   )},
-  logIn(email, password, rememberMe = false) {return (
+  logIn(loginData) {return (
     instance
-    .post(`/auth/login`, {email, password, rememberMe})
+    .post(`/auth/login`, loginData)
     .then(response => {return response.data})
   )},
   logOut() {return (

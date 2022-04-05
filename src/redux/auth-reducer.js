@@ -38,11 +38,13 @@ export const getAuthUserData = () => {
   }
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.logIn(email, password, rememberMe)
+export const login = (loginData, setStatus) => (dispatch) => {
+  authAPI.logIn(loginData)
   .then(data => {
     if (data.resultCode === 0) {
       dispatch(getAuthUserData());
+    } else {
+      setStatus({error: data.messages})
     }
   });
 }

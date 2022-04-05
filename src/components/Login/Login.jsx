@@ -23,8 +23,12 @@ const LoginForm = (props) => {
   })
 
   const onSubmit = (values, submitProps) => {
-    console.log('Login data', values);
-    props.login(values.email, values.pass, values.remember);
+    let loginData = {
+      email: values.email,
+      password: values.pass,
+      rememberMe: values.remember
+    };
+    props.login(loginData, submitProps.setStatus);
     submitProps.setSubmitting(false);
     submitProps.resetForm();
   }
@@ -35,6 +39,11 @@ const LoginForm = (props) => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}>
       {formik => {
+        let apiErrors;
+        if (formik.status) {
+          apiErrors = formik.status.error.map((item, index) => <TextError key={index}>{item}</TextError>);
+        }
+
         return (
           <Form className={css.form}>
             <div className={css.control} >
@@ -53,6 +62,8 @@ const LoginForm = (props) => {
               <Field type='checkbox' id='remember' name='remember' />
               <label htmlFor='remember'>Remember me</label>
             </div>
+
+            {apiErrors ? <div>{apiErrors}</div> : null}
 
             <button type='submit' disabled={!formik.isValid || formik.isSubmitting}>
               Login

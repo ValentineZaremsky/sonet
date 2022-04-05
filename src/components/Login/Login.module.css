@@ -24,6 +24,7 @@
 }
 
 .form button[type='submit'] {
+  cursor: pointer;
   font-size: 14px;
   width: 100%;
   padding: 6px 12px;
