@@ -29,9 +29,19 @@
   border-radius: 8px;
 }
 .newPost button {
+  cursor: pointer;
   white-space: nowrap;
   margin: 8px;
   padding: 8px 16px;
   width: fit-content;
   border-radius: 8px;
+  border: 1px solid hsl(218, 60%, 60%);
+  background-color: hsl(218, 92%, 95%);
+  color: hsl(218, 60%, 40%);
+}
+.newPost button:disabled {
+  cursor: default;
+  border: 1px solid hsl(218, 30%, 60%);
+  background-color: hsl(218, 82%, 85%);
+  color: hsl(218, 30%, 60%);
 }
