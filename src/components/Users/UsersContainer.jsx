@@ -2,27 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from "redux";
 // import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import Preloader from '../common/Preloader/Preloader'
-import Users from './Users'
+import Preloader from '../common/Preloader/Preloader';
+import Users from './Users';
+import {
+  getUsers,
+  getPageSize,
+  getCurrentPage,
+  getTotalUsersCount,
+  getIsFetching,
+  getFollowingInProgress,
+} from "../../redux/users-selectors";
 import {
   followUser,
   unfollowUser,
   setCurrentPage,
   setFollowingProgress,
-  getUsers,
+  requestUsers,
   unfollow,
   follow
-} from '../../redux/users-reducer'
+} from '../../redux/users-reducer';
 
 class UsersContainer extends React.Component {
 
   componentDidMount() {
-    this.props.getUsers(this.props.pageSize, this.props.currentPage);
+    this.props.requestUsers(this.props.pageSize, this.props.currentPage);
   }
 
   onPageChange = (pageNumber) => {
     this.props.setCurrentPage(pageNumber);
-    this.props.getUsers(this.props.pageSize, pageNumber);
+    this.props.requestUsers(this.props.pageSize, pageNumber);
   }
 
   render() {
@@ -46,14 +54,25 @@ class UsersContainer extends React.Component {
   }
 }
 
+// const mapStateToProps = (state) => {
+//   return {
+//     users:               state.usersPage.users,
+//     pageSize:            state.usersPage.pageSize,
+//     currentPage:         state.usersPage.currentPage,
+//     totalUsersCount:     state.usersPage.totalUsersCount,
+//     isFetching:          state.usersPage.isFetching,
+//     followingInProgress: state.usersPage.followingInProgress
+//   }
+// }
+
 const mapStateToProps = (state) => {
   return {
-    users:               state.usersPage.users,
-    pageSize:            state.usersPage.pageSize,
-    currentPage:         state.usersPage.currentPage,
-    totalUsersCount:     state.usersPage.totalUsersCount,
-    isFetching:          state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress
+    users:               getUsers(state),
+    pageSize:            getPageSize(state),
+    currentPage:         getCurrentPage(state),
+    totalUsersCount:     getTotalUsersCount(state),
+    isFetching:          getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state)
   }
 }
 
@@ -63,7 +82,7 @@ export default compose(
     unfollowUser,
     setCurrentPage,
     setFollowingProgress,
-    getUsers,
+    requestUsers,
     unfollow,
     follow
   }),
