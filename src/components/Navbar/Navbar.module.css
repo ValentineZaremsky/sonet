@@ -1,7 +1,10 @@
 .nav {
   grid-area: n;
-  padding: 16px;
   background-color: burlywood;
+}
+
+.menu {
+  margin: 16px;
 }
 
 .item,
@@ -9,9 +12,13 @@
   font-size: large;
   color: maroon;
 }
-
 .item a {
+  display: block;
   text-decoration: none;
+  padding: 2px 8px;
+}
+.item a:hover {
+  background-color: hsl(34, 60%, 75%);
 }
 
 .active {

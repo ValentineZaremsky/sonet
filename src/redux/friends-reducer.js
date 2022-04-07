@@ -1,13 +1,44 @@
+import { usersAPI } from '../api/api'
+
+const SET_FRIENDS     = 'SET-FRIENDS';
+const SET_IS_FETCHING = 'SET-IS-FETCHING';
+
 const initialState = {
-  friends: [
-    { id: 3, name: 'Sveta',  avatar: 'https://png.pngtree.com/png-clipart/20210424/ourlarge/pngtree-black-hanging-evening-dress-cartoon-character-avatar-png-image_3232190.png'},
-    { id: 2, name: 'Andrew', avatar: 'https://w7.pngwing.com/pngs/846/682/png-transparent-computer-icons-user-profile-avatar-avatar-heroes-service-head.png'},
-    { id: 4, name: 'Sasha',  avatar: 'https://w7.pngwing.com/pngs/439/19/png-transparent-avatar-user-profile-icon-women-wear-frock-face-holidays-women-accessories-thumbnail.png'}
-  ]
+  friends: [],
+  pageSize: 3,
+  totalUsersCount: 0,
+  isFetching: false
 };
 
 const friendsReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case SET_FRIENDS:
+      return {
+        ...state,
+        friends: action.friends
+      };
+    case SET_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching
+      };
+    default:
+      return state;
+  }
+}
+
+export const setFriends = (friends) => ({ type: SET_FRIENDS, friends })
+export const setIsFetching = (isFetching) => ({ type: SET_IS_FETCHING, isFetching })
+
+export const requestFriends = (pageSize, page, friend) => {
+  return (dispatch) => {
+    dispatch(setIsFetching(true));
+    usersAPI.getFriends(pageSize, page, friend)
+    .then(data => {
+      dispatch(setIsFetching(false));
+      dispatch(setFriends(data.items));
+    });
+  }
 }
 
 export default friendsReducer;

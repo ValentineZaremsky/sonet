@@ -2,9 +2,13 @@ import React from 'react';
 import css from './Friends.module.css';
 import Friend from './Friend/Friend';
 
-const Friends = ({ friends }) => {
+const Friends = (props) => {
 
-  let friendsElements = friends.map(f => <Friend name={f.name} id={f.id} avatar={f.avatar} />);
+  console.log("friends: ", props.friends)
+
+  let friendsElements = props.friends.map(f => {
+    return <Friend key={f.id} name={f.name} id={f.id} avatar={f.photos.small} />
+  });
 
   return (
     <div className={css.friends}>
