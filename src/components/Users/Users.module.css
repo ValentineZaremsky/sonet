@@ -9,6 +9,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   width: 100%;
   margin-bottom: 16px;
   padding: 8px 16px;
@@ -36,14 +37,21 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  gap: 4px;
 }
-
 .rightSide {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   flex-grow: 1;
+}
+
+.photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: #c3d7f0;
 }
 
 .avatar {
@@ -88,7 +96,7 @@
   font-size: 0.9em;
   font-style: italic;
   word-wrap: break-word;
-  /* word-break: break-all; */
+  word-break: break-all;
 }
 .status::before,
 .status::after {

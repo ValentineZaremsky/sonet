@@ -9,10 +9,12 @@ const Friend = ({ id, name, avatar }) => {
   return (
     <div className={css.friend}>
       <NavLink to={path}>
-        { avatar
-          ? <img src={avatar} className={css.avatar} alt={name}/>
-          : <UserPhoto className={css.avatar}/>
-        }
+        <div className={css.photo}>
+          { avatar
+            ? <img src={avatar} className={css.avatar} alt={name}/>
+            : <UserPhoto className={css.avatar}/>
+          }
+        </div>
         <div className={css.name}>
           {name}
         </div>

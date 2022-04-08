@@ -54,7 +54,7 @@ let Users = (props) => {
         return (
           <div className={css.user} key={u.id}>
             <div className={css.leftSide}>
-              <div>
+              <div className={css.photo}>
                 <NavLink to={`/profile/${u.id}`}>
                   { u.photos.small
                     ? <img className={css.avatar} src={u.photos.small} alt="Avatar" />
