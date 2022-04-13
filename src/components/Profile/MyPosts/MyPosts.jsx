@@ -5,8 +5,7 @@ import css from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-  let state = props.profilePage;
-  let postsElements = state.posts.map( p => <Post key={p.id} message={p.text} likes={p.likes} /> );
+  let postsElements = props.posts.map( p => <Post key={p.id} message={p.text} likes={p.likes} /> );
 
   return (
     <div className={css.postsBlock}>

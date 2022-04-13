@@ -3,9 +3,6 @@ import css from './Friends.module.css';
 import Friend from './Friend/Friend';
 
 const Friends = (props) => {
-
-  console.log("friends: ", props.friends)
-
   let friendsElements = props.friends.map(f => {
     return <Friend key={f.id} name={f.name} id={f.id} avatar={f.photos.small} />
   });

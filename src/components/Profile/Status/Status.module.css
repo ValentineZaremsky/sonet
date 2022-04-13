@@ -21,3 +21,6 @@
   border-radius: 8px;
   outline: none;
 }
+.nothing {
+  color:hsl(210, 30%, 50%);
+}

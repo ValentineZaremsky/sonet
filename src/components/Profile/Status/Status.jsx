@@ -33,7 +33,7 @@ const Status = (props) => {
           />
         </div>
       : <div>
-          <span onDoubleClick={activateEditMode}>
+          <span onDoubleClick={activateEditMode} className={props.status ? "" : `${css.nothing}`}>
             {props.status || "Type here something about you"}
           </span>
         </div>
