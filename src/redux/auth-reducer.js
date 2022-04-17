@@ -26,35 +26,28 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
   payload: {userId, email, login, isAuth}
 })
 
-export const getAuthUserData = () => (dispatch) => {
-  return authAPI.authMe()
-  .then(data => {
-    if (data.resultCode === 0) {
-      let {id, email, login} = data.data;
-      dispatch(setAuthUserData(id, email, login, true));
-    }
-  });
+export const getAuthUserData = () => async (dispatch) => {
+  let data = await authAPI.authMe()
+  if (data.resultCode === 0) {
+    let {id, email, login} = data.data;
+    dispatch(setAuthUserData(id, email, login, true));
+  }
 }
 
-
-export const login = (loginData, setStatus) => (dispatch) => {
-  authAPI.logIn(loginData)
-  .then(data => {
-    if (data.resultCode === 0) {
-      dispatch(getAuthUserData());
-    } else {
-      setStatus({error: data.messages})
-    }
-  });
+export const login = (loginData, setStatus) => async (dispatch) => {
+  let data = await authAPI.logIn(loginData)
+  if (data.resultCode === 0) {
+    dispatch(getAuthUserData());
+  } else {
+    setStatus({error: data.messages})
+  }
 }
 
-export const logout = () => (dispatch) => {
-  authAPI.logOut()
-  .then(data => {
-    if (data.resultCode === 0) {
-      dispatch(setAuthUserData(null, null, null, false));
-    }
-  });
+export const logout = () => async (dispatch) => {
+  let data = await authAPI.logOut()
+  if (data.resultCode === 0) {
+    dispatch(setAuthUserData(null, null, null, false));
+  }
 }
 
 

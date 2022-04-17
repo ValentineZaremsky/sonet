@@ -1,0 +1,13 @@
+.pageLinks {
+  padding-bottom: 12px;
+}
+.pageNumber {
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 0 4px;
+}
+
+.selected {
+  cursor: default;
+  font-weight: bold;
+}

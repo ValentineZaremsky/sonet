@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <div className='app-wrapper'>
         <HeaderContainer/>
-        <Navbar/>            {/* friendsBlock={props.state.friendsBlock} */}
+        <Navbar/>
         <div className='app-wrapper-content'>
           <Routes>
             <Route path='/profile/*' element={

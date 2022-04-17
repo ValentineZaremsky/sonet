@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import css from './Header.module.css';
 
-const Header = (props) => {
+const Header = ({isAuth, login, logout}) => {
   return (
     <header className={css.header}>
       <img alt='Logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Blue_globe_icon.svg/2000px-Blue_globe_icon.svg.png' />
@@ -10,10 +10,10 @@ const Header = (props) => {
         IT-Kamasutra
       </div>
       <div className={css.loginBlock}>
-        { props.isAuth
+        { isAuth
           ? <>
-              <span>Hello, {props.login}!</span>
-              <button onClick={props.logout}>Log out</button>
+              <span>Hello, {login}!</span>
+              <button onClick={logout}>Log out</button>
             </>
           : <NavLink to={'/login'}>Log in</NavLink>
         }

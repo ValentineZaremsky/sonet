@@ -4,13 +4,13 @@ import * as Yup from 'yup';
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = (props) => {
-  let postsElements = props.posts.map( p => <Post key={p.id} message={p.text} likes={p.likes} /> );
+const MyPosts = ({posts, addNewPost}) => {
+  let postsElements = posts.map( p => <Post key={p.id} message={p.text} likes={p.likes} /> );
 
   return (
     <div className={css.postsBlock}>
       <h3>My posts</h3>
-      <AddPostForm addNewPost={props.addNewPost} />
+      <AddPostForm addNewPost={addNewPost} />
       <div className={css.posts}>
         { postsElements }
       </div>

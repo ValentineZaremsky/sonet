@@ -8,7 +8,7 @@ import TextError from '../common/TextError/TextError'
 import css from './Login.module.css';
 
 
-const LoginForm = (props) => {
+const LoginForm = ({login}) => {
   const initialValues = {
     email: '',
     pass: '',
@@ -28,7 +28,7 @@ const LoginForm = (props) => {
       password: values.pass,
       rememberMe: values.remember
     };
-    props.login(loginData, submitProps.setStatus);
+    login(loginData, submitProps.setStatus);
     submitProps.setSubmitting(false);
     submitProps.resetForm();
   }
@@ -75,14 +75,14 @@ const LoginForm = (props) => {
   )
 }
 
-const Login = (props) => {
-  if (props.isAuth)
+const Login = ({isAuth, login}) => {
+  if (isAuth)
     return <Navigate to='/profile' />
   else
     return (
       <div className={css.login}>
         <h1>Log in</h1>
-        <LoginForm login={props.login}/>
+        <LoginForm login={login}/>
       </div>
     )
 }

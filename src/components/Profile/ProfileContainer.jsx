@@ -9,7 +9,8 @@ import Profile from './Profile';
 class ProfileContainer extends React.Component {
 
   componentDidMount() {
-    let userId = this.props.match ? this.props.match.params.userId : this.props.myUserId;
+    const {match, myUserId} = this.props;
+    let userId = match ? match.params.userId : myUserId;
     if (!userId) {
       this.props.history.push("/login");
     }

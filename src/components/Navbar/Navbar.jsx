@@ -5,7 +5,7 @@ import css from './Navbar.module.css';
 
 const setActive = ({isActive}) => isActive ? css.active : css.link;
 
-const Navbar = (props) => {
+const Navbar = () => {
   return (
     <nav className={css.nav}>
       <div className={css.menu}>

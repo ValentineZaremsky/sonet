@@ -1,9 +1,9 @@
 import React from 'react';
 import css from './TextError.module.css';
 
-function TextError (props) {
+function TextError ({children}) {
   return (
-    <div className={css.error}>{props.children}</div>
+    <div className={css.error}>{children}</div>
   )
 }
 

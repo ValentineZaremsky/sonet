@@ -33,7 +33,7 @@ export const initializeApp = () => (dispatch) => {
     });
 }
 
-// export const initializeApp = () => async(dispatch) => {
+// export const initializeApp = () => async (dispatch) => {
 //   await dispatch(getAuthUserData())
 //   dispatch(initializedSuccess())
 // }
