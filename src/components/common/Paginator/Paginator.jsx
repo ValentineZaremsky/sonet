@@ -1,18 +1,17 @@
 import React from 'react';
 import css from "./Paginator.module.css";
 
-let Paginator = ({totalUsersCount, pageSize, currentPage, onPageChange}) => {
+let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, half = 5}) => {
 
-  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+  let pagesCount = Math.ceil(totalItemsCount / pageSize);
   let pages = [];
-  let quant = 7;
-  for (let p = Math.max(currentPage - quant, 1); p <= Math.max(1, Math.min(currentPage + quant, pagesCount)); p++) {
+  for (let p = Math.max(currentPage - half, 1); p <= Math.max(1, Math.min(currentPage + half, pagesCount)); p++) {
     pages.push(p);
   }
 
   return (
     <div className={css.pageLinks}>
-      {currentPage > quant + 1
+      {currentPage > half + 1
         ? <>
             <span
               className={css.pageNumber}
@@ -33,7 +32,7 @@ let Paginator = ({totalUsersCount, pageSize, currentPage, onPageChange}) => {
           </span>
         )
       })}
-      {currentPage < pagesCount - quant
+      {currentPage < pagesCount - half
         ? <>
             <span>{"..."}</span>
             <span

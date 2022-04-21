@@ -1,11 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { ReactComponent as GlobeIcon } from '../../assets/icons/Globe.svg';
 import css from './Header.module.css';
 
 const Header = ({isAuth, login, logout}) => {
   return (
     <header className={css.header}>
-      <img alt='Logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Blue_globe_icon.svg/2000px-Blue_globe_icon.svg.png' />
+      <NavLink to={'/'}>
+        <GlobeIcon className={css.logo}/>
+      </NavLink>
       <div className={css.headName}>
         IT-Kamasutra
       </div>
