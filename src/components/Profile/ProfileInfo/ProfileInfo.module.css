@@ -54,15 +54,49 @@
   flex-grow: 1;
 }
 .contactsBlock {
-  height: 100%;
+  flex-shrink: 0;
   padding-right: 16px;
-  text-align: right;
 }
+.contactsBlock *,
 .contacts {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
   font-size: 0.75em;
   margin-bottom: 0.25em;
   word-break: keep-all;
   word-wrap: normal;
+}
+.contactsBlock *::before {
+  display: inline-block;
+  font-family: "Font Awesome 5 Brands";
+  font-size: 1.2em;
+}
+
+.facebook::before {
+  content: '\f09a';
+}
+.website::before {
+  content: '\e078';
+}
+.vk::before {
+  content: '\f189';
+}
+.twitter::before {
+  content: '\f099';
+}
+.instagram::before {
+  content: '\f16d';
+}
+.youtube::before {
+  content: "\f167";
+}
+.github::before {
+  content: "\f09b";
+}
+.mainLink::before {
+  content: '\f08c';
 }
 
 .name {

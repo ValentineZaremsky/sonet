@@ -14,9 +14,8 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, half = 5
       {currentPage > half + 1
         ? <>
             <span
-              className={css.pageNumber}
+              className={`${css.arrow} fa-solid fa-xs fa-backward-fast`}
               onClick={(e) => {onPageChange(1)}}>
-              {"|◄"}
             </span>
             <span>{"..."}</span>
           </>
@@ -36,9 +35,8 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, half = 5
         ? <>
             <span>{"..."}</span>
             <span
-              className={css.pageNumber}
+              className={`${css.arrow} fa-solid fa-xs fa-forward-fast`}
               onClick={(e) => {onPageChange(pagesCount)}}>
-              {"►|"}
             </span>
           </>
         : ""

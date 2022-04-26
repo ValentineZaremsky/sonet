@@ -9,35 +9,27 @@ const Status = (props) => {
     setStatus(props.status);
   }, [props.status] );
 
-  const activateEditMode = () => {
+  const editOn = () => {
     setEditMode(true);
   }
-  const deactivateEditMode = () => {
+  const editOff = () => {
     setEditMode(false);
     props.updateStatus(status);
   }
-  const onStatusChange = (e) => {
+  const onChange = (e) => {
     setStatus(e.currentTarget.value);
   }
 
+  const statusInput = <input type="text" autoFocus onChange={onChange} onBlur={editOff} value={status}/>
+  const statusSpan = props.isEditable
+    ? <span onDoubleClick={editOn} className={props.status ? "" : `${css.nothing}`}>
+        {props.status || "Type here something about you"}
+      </span>
+    : <span>{props.status || "\u00A0"}</span>
+
   return (
     <div className={css.status}>
-      { editMode
-      ? <div>
-          <input
-            type="text"
-            autoFocus
-            onChange={onStatusChange}
-            onBlur={deactivateEditMode}
-            value={status}
-          />
-        </div>
-      : <div>
-          <span onDoubleClick={activateEditMode} className={props.status ? "" : `${css.nothing}`}>
-            {props.status || "Type here something about you"}
-          </span>
-        </div>
-      }
+      { props.isEditable && editMode ? statusInput : statusSpan}
     </div>
   )
 }

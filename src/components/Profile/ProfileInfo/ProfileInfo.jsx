@@ -4,15 +4,17 @@ import { ReactComponent as UserPhoto } from '../../../assets/icons/avatar-male.s
 import Status from '../Status/Status'
 import css from './ProfileInfo.module.css';
 
-const ProfileInfo = ({ profile, status, updateStatus }) => {
+const ProfileInfo = ({ profile, status, myUserId, updateStatus }) => {
   if (!profile) {
     return <Preloader />
   }
 
+  const cnt = profile.contacts;
+
   return (
     <div className={css.profileInfo}>
       <div className={css.cover}>
-        <img alt='Cover' src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350' />
+        <img alt='Cover' src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg' />
       </div>
 
       <div className={css.wrapper}>
@@ -27,8 +29,8 @@ const ProfileInfo = ({ profile, status, updateStatus }) => {
           <div className={css.name}>{profile.fullName}</div>
           <div className={css.infoBlock}>
             <div className={css.statusBlock}>
-              <div className={css.userId}>{profile.userId}</div>
-              <Status status={status} updateStatus={updateStatus} />
+              <div className={css.userId}>{profile.userId} / {myUserId}</div>
+              <Status status={status} updateStatus={updateStatus} isEditable={profile.userId === myUserId} />
               { profile.aboutMe
                 ? <div className={css.status}>{profile.aboutMe}</div>
                 : <div className={css.userId}>{"\u00A0"}</div>
@@ -41,14 +43,14 @@ const ProfileInfo = ({ profile, status, updateStatus }) => {
             </div>
 
             <div className={css.contactsBlock}>
-              <div className={css.contacts}>{profile.contacts.facebook  ? "facebook: "  + profile.contacts.facebook  : ""}</div>
-              <div className={css.contacts}>{profile.contacts.website   ? "website: "   + profile.contacts.website   : ""}</div>
-              <div className={css.contacts}>{profile.contacts.vk        ? "vk: "        + profile.contacts.vk        : ""}</div>
-              <div className={css.contacts}>{profile.contacts.twitter   ? "twitter: "   + profile.contacts.twitter   : ""}</div>
-              <div className={css.contacts}>{profile.contacts.instagram ? "instagram: " + profile.contacts.instagram : ""}</div>
-              <div className={css.contacts}>{profile.contacts.youtube   ? "youtube: "   + profile.contacts.youtube   : ""}</div>
-              <div className={css.contacts}>{profile.contacts.github    ? "github: "    + profile.contacts.github    : ""}</div>
-              <div className={css.contacts}>{profile.contacts.mainLink  ? "mainLink: "  + profile.contacts.mainLink  : ""}</div>
+              {cnt.facebook  ? <div className={css.facebook}>  {cnt.facebook}  </div> : ""}
+              {cnt.twitter   ? <div className={css.twitter}>   {cnt.twitter}   </div> : ""}
+              {cnt.instagram ? <div className={css.instagram}> {cnt.instagram} </div> : ""}
+              {cnt.youtube   ? <div className={css.youtube}>   {cnt.youtube}   </div> : ""}
+              {cnt.github    ? <div className={css.github}>    {cnt.github}    </div> : ""}
+              {cnt.website   ? <div className={css.website}>   {cnt.website}   </div> : ""}
+              {cnt.vk        ? <div className={css.vk}>        {cnt.vk}        </div> : ""}
+              {cnt.mainLink  ? <div className={css.mainLink}>  {cnt.mainLink}  </div> : ""}
             </div>
           </div>
         </div>

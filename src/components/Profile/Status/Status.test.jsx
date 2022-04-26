@@ -26,14 +26,14 @@ describe("Status component", () => {
   });
 
   test("After creation <span> should contains correct status", () => {
-    const component = create(<Status status="it-kamasutra.com" />);
+    const component = create(<Status status="it-kamasutra.com" isEditable={true} />);
     const root = component.root;
     let span = root.findByType("span");
     expect(span.children[0]).toBe("it-kamasutra.com");
   });
 
   test("Input should be displayed in EditMode instead of span", () => {
-    const component = create(<Status status="it-kamasutra.com" />);
+    const component = create(<Status status="it-kamasutra.com" isEditable={true} />);
     const root = component.root;
     let span = root.findByType("span");
     span.props.onDoubleClick();
