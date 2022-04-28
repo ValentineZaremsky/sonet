@@ -37,7 +37,6 @@ export const usersAPI = {
     .get(`users?count=${pageSize}&page=${currentPage}&friend=${friend}`)
     .then(response => {return response.data})
   )}
-
 }
 
 export const profileAPI = {
@@ -55,7 +54,17 @@ export const profileAPI = {
     instance
     .put('/profile/status/', { status: status })
     .then(response => {return response.data})
-  )}
+  )},
+  savePhoto(photoFile) {
+    const formData = new FormData();
+    formData.append("image", photoFile);
+    return (
+      instance
+      .put(`profile/photo`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+    );
+  }
 }
 
 export const followAPI = {

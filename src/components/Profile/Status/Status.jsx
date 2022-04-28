@@ -22,7 +22,7 @@ const Status = (props) => {
 
   const statusInput = <input type="text" autoFocus onChange={onChange} onBlur={editOff} value={status}/>
   const statusSpan = props.isEditable
-    ? <span onDoubleClick={editOn} className={props.status ? "" : `${css.nothing}`}>
+    ? <span onDoubleClick={editOn} className={props.status ? "" : `${css.nothing}`} title="Double click to edit">
         {props.status || "Type here something about you"}
       </span>
     : <span>{props.status || "\u00A0"}</span>

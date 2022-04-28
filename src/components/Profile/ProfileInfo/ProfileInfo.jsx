@@ -1,12 +1,18 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
-import { ReactComponent as UserPhoto } from '../../../assets/icons/avatar-male.svg';
+import { ReactComponent as Avatar } from '../../../assets/icons/avatar-male.svg';
 import Status from '../Status/Status'
 import css from './ProfileInfo.module.css';
 
-const ProfileInfo = ({ profile, status, myUserId, updateStatus }) => {
+const ProfileInfo = ({ profile, status, isOwner, updateStatus, savePhoto }) => {
   if (!profile) {
     return <Preloader />
+  }
+
+  const onAvatarSelected = (e) => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
   }
 
   const cnt = profile.contacts;
@@ -21,7 +27,15 @@ const ProfileInfo = ({ profile, status, myUserId, updateStatus }) => {
         <div className={css.avatarBlock}>
           { profile.photos.large
             ? <img className={css.avatar} src={profile.photos.large} alt="Avatar" />
-            : <UserPhoto className={css.avatar}/>
+            : <Avatar className={css.avatar}/>
+          }
+          { isOwner &&
+            <>
+              <input type="file" id="upload" className={css.uploadInput} accept=".jpg,.png,.gif" onChange={onAvatarSelected}/>
+              <label className={css.uploadLabel} htmlFor="upload" title="Upload picture">
+                <i class="fa-solid fa-xl fa-image"></i>
+              </label>
+            </>
           }
         </div>
 
@@ -29,8 +43,8 @@ const ProfileInfo = ({ profile, status, myUserId, updateStatus }) => {
           <div className={css.name}>{profile.fullName}</div>
           <div className={css.infoBlock}>
             <div className={css.statusBlock}>
-              <div className={css.userId}>{profile.userId} / {myUserId}</div>
-              <Status status={status} updateStatus={updateStatus} isEditable={profile.userId === myUserId} />
+              <div className={css.userId}>{profile.userId}</div>
+              <Status status={status} updateStatus={updateStatus} isEditable={isOwner} />
               { profile.aboutMe
                 ? <div className={css.status}>{profile.aboutMe}</div>
                 : <div className={css.userId}>{"\u00A0"}</div>

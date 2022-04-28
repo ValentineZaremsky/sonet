@@ -4,10 +4,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: lightblue;
+  background-color: hsl(200, 40%, 84%);
 }
 
 .logo {
+  display: flex;
   width: 52px;
   height: 52px;
   padding: 4px 16px;
@@ -15,18 +16,31 @@
 }
 
 .headName {
-  display: inline-block;
-  font-size: 40px;
+  font-size: 52px;
   font-weight: bold;
+  padding-bottom: 4px;
+  text-shadow: -1px -1px 0px #000080, 1px 1px 0px #000080;
   color: #000080;
 }
+.headName .head1st {
+  color: hsl(240, 50%, 50%);
+}
+.headName .head2nd {
+  color: hsl(240, 75%, 33%);
+}
 
+.logoBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .loginBlock {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 16px;
   padding: 16px;
+  color: #000080;
 }
 .loginBlock a {
   display: inline-block;
