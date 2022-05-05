@@ -43,7 +43,7 @@ describe("Status component", () => {
 
   // test("Callback should be called", () => {
   //   const mockCallback = jest.fn();
-  //   const component = create(<Status status="it-kamasutra.com" updateStatus={mockCallback} />);
+  //   const component = create(<Status status="it-kamasutra.com" saveStatus={mockCallback} />);
   //   const instance = component.getInstance();
   //   instance.deactivateEditMode();
   //   expect(mockCallback.mock.calls.length).toBe(1);

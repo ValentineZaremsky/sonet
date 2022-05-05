@@ -5,8 +5,8 @@
 .arrow,
 .pageNumber {
   cursor: pointer;
-  font-size: 0.9em;
-  padding: 0 4px;
+  font-size: 0.88em;
+  padding: 0 3px;
 }
 .arrow {
   font-size: 0.75em;

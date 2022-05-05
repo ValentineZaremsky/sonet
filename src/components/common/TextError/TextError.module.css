@@ -1,5 +1,6 @@
 .error {
   color: red;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   font-style: italic;
+  align-self: flex-start;
 }

@@ -1,0 +1,111 @@
+.infoHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 100px 32px 0 0;
+}
+
+.control button {
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 10px;
+  min-width: 80px;
+  width: fit-content;
+  border-radius: 4px;
+  border: 1px solid hsl(218, 60%, 60%);
+  background-color: hsl(218, 92%, 95%);
+  color: hsl(218, 60%, 40%);
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.statusBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.name {
+  font-size: 2em;
+  font-weight: bold;
+}
+.userId {
+  display: none;
+}
+
+.status {
+  font-size: 1em;
+  font-style: italic;
+  word-wrap: break-word;
+  /* word-break: break-all; */
+}
+.status::before,
+.status::after {
+  content: '"';
+}
+
+.job {
+  margin-top: 24px;
+}
+.jobDesc {
+  font-style: italic;
+  word-wrap: break-word;
+}
+.jobDesc::before,
+.jobDesc::after {
+  content: '"';
+}
+
+.contactsBlock {
+  flex-shrink: 0;
+  padding-right: 16px;
+}
+.contactsBlock *,
+.contacts {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75em;
+  margin-bottom: 0.25em;
+  word-break: keep-all;
+  word-wrap: normal;
+}
+.contactsBlock *::before {
+  display: inline-block;
+  font-family: "Font Awesome 5 Brands";
+  font-size: 1.2em;
+}
+
+.facebook::before {
+  content: '\f09a';
+}
+.website::before {
+  content: '\e078';
+}
+.vk::before {
+  content: '\f189';
+}
+.twitter::before {
+  content: '\f099';
+}
+.instagram::before {
+  content: '\f16d';
+}
+.youtube::before {
+  content: "\f167";
+}
+.github::before {
+  content: "\f09b";
+}
+.mainLink::before {
+  content: '\f08c';
+}

@@ -14,7 +14,7 @@ const Status = (props) => {
   }
   const editOff = () => {
     setEditMode(false);
-    props.updateStatus(status);
+    props.saveStatus(status);
   }
   const onChange = (e) => {
     setStatus(e.currentTarget.value);

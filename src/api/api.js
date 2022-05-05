@@ -50,14 +50,19 @@ export const profileAPI = {
     .get(`/profile/status/${userId}`)
     .then(response => {return response.data})
   )},
-  updateStatus(status) {return (
+  saveStatus(status) {return (
     instance
     .put('/profile/status/', { status: status })
     .then(response => {return response.data})
   )},
+  saveProfile(profile) {return (
+    instance
+    .put('/profile/', profile)
+    .then(response => {return response.data})
+  )},
   savePhoto(photoFile) {
     const formData = new FormData();
-    formData.append("image", photoFile);
+    formData.append('image', photoFile);
     return (
       instance
       .put(`profile/photo`, formData, {

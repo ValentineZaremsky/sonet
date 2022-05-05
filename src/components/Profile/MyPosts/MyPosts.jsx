@@ -4,13 +4,13 @@ import * as Yup from 'yup';
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({posts, addNewPost}) => {
+const MyPosts = ({posts, addNewPost, isOwner}) => {
   let postsElements = posts.map( p => <Post key={p.id} message={p.text} likes={p.likes} /> );
 
   return (
     <div className={css.postsBlock}>
-      <h3>My posts</h3>
-      <AddPostForm addNewPost={addNewPost} />
+      <h3>Posts</h3>
+      { isOwner && <AddPostForm addNewPost={addNewPost} /> }
       <div className={css.posts}>
         { postsElements }
       </div>

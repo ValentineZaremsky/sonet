@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Preloader from '../../common/Preloader/Preloader';
-import { ReactComponent as Avatar } from '../../../assets/icons/avatar-male.svg';
-import Status from '../Status/Status'
+import ProfilePict from '../ProfilePict/ProfilePict';
+import ProfileData from '../ProfileData/ProfileData';
+import ProfileForm from '../ProfileForm/ProfileForm';
 import css from './ProfileInfo.module.css';
 
-const ProfileInfo = ({ profile, status, isOwner, updateStatus, savePhoto }) => {
+const ProfileInfo = ({ profile, status, isOwner, saveStatus, saveProfile, savePhoto }) => {
+  let [editMode, setEditMode] = useState(false);
+
   if (!profile) {
     return <Preloader />
   }
 
-  const onAvatarSelected = (e) => {
-    if (e.target.files.length) {
-      savePhoto(e.target.files[0]);
-    }
-  }
-
-  const cnt = profile.contacts;
+  const enableEdit = () => {
+    setEditMode(true)
+  };
+  const disableEdit = () => {
+    setEditMode(false)
+  };
 
   return (
     <div className={css.profileInfo}>
@@ -24,49 +26,12 @@ const ProfileInfo = ({ profile, status, isOwner, updateStatus, savePhoto }) => {
       </div>
 
       <div className={css.wrapper}>
-        <div className={css.avatarBlock}>
-          { profile.photos.large
-            ? <img className={css.avatar} src={profile.photos.large} alt="Avatar" />
-            : <Avatar className={css.avatar}/>
-          }
-          { isOwner &&
-            <>
-              <input type="file" id="upload" className={css.uploadInput} accept=".jpg,.png,.gif" onChange={onAvatarSelected}/>
-              <label className={css.uploadLabel} htmlFor="upload" title="Upload picture">
-                <i class="fa-solid fa-xl fa-image"></i>
-              </label>
-            </>
-          }
-        </div>
-
+        <ProfilePict {...{ profile, isOwner, savePhoto }}/>
         <div className={css.descriptionBlock}>
-          <div className={css.name}>{profile.fullName}</div>
-          <div className={css.infoBlock}>
-            <div className={css.statusBlock}>
-              <div className={css.userId}>{profile.userId}</div>
-              <Status status={status} updateStatus={updateStatus} isEditable={isOwner} />
-              { profile.aboutMe
-                ? <div className={css.status}>{profile.aboutMe}</div>
-                : <div className={css.userId}>{"\u00A0"}</div>
-              }
-              <div className={css.job}>{profile.lookingForAJob ? "Looking for a job" : "\u00A0"}</div>
-              { profile.lookingForAJobDescription
-                ? <div className={css.jobDesc}>{profile.lookingForAJobDescription}</div>
-                : <div className={css.userId}>{"\u00A0"}</div>
-              }
-            </div>
-
-            <div className={css.contactsBlock}>
-              {cnt.facebook  ? <div className={css.facebook}>  {cnt.facebook}  </div> : ""}
-              {cnt.twitter   ? <div className={css.twitter}>   {cnt.twitter}   </div> : ""}
-              {cnt.instagram ? <div className={css.instagram}> {cnt.instagram} </div> : ""}
-              {cnt.youtube   ? <div className={css.youtube}>   {cnt.youtube}   </div> : ""}
-              {cnt.github    ? <div className={css.github}>    {cnt.github}    </div> : ""}
-              {cnt.website   ? <div className={css.website}>   {cnt.website}   </div> : ""}
-              {cnt.vk        ? <div className={css.vk}>        {cnt.vk}        </div> : ""}
-              {cnt.mainLink  ? <div className={css.mainLink}>  {cnt.mainLink}  </div> : ""}
-            </div>
-          </div>
+          { editMode
+            ? <ProfileForm {...{ profile, saveProfile, disableEdit }}/>
+            : <ProfileData {...{ profile, status, isOwner, saveStatus, enableEdit }}/>
+          }
         </div>
       </div>
     </div>
