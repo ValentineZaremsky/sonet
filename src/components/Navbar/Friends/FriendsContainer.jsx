@@ -11,7 +11,7 @@ class FriendsContainer extends React.Component {
 
   render() {
     return (
-      <Friends friends={this.props.friends}/>
+      <Friends friends={this.props.friends} isAuth={this.props.isAuth}/>
     )
   }
 }
@@ -19,6 +19,7 @@ class FriendsContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     friends: state.friendsBlock.friends,
+    isAuth:  state.auth.isAuth
   }
 }
 

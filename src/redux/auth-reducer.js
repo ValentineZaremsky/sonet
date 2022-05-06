@@ -1,17 +1,20 @@
-import { authAPI } from '../api/api'
+import { authAPI, securityAPI } from '../api/api'
 
-const SET_USER_DATA = 'SET-USER-DATA';
+const SET_USER_DATA   = 'SET-USER-DATA';
+const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL';
 
 const initialState = {
   userId: null,
   email:  null,
   login:  null,
-  isAuth: false
+  isAuth: false,
+  captchaUrl: null
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
+    case SET_CAPTCHA_URL:
       return {
         ...state,
         ...action.payload
@@ -26,6 +29,11 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
   payload: {userId, email, login, isAuth}
 })
 
+export const setCaptchaUrl = (captchaUrl) => ({
+  type: SET_CAPTCHA_URL,
+  payload: {captchaUrl}
+});
+
 export const getAuthUserData = () => async (dispatch) => {
   let data = await authAPI.authMe()
   if (data.resultCode === 0) {
@@ -34,12 +42,20 @@ export const getAuthUserData = () => async (dispatch) => {
   }
 }
 
+export const getCaptchaUrl = () => async (dispatch) => {
+  const data = await securityAPI.getCaptchaUrl();
+  dispatch(setCaptchaUrl(data.url));
+}
+
 export const login = (loginData, setStatus) => async (dispatch) => {
   let data = await authAPI.logIn(loginData)
   if (data.resultCode === 0) {
     dispatch(getAuthUserData());
   } else {
-    setStatus({error: data.messages})
+    setStatus({ error: data.messages })
+    if (data.resultCode === 10) {
+      dispatch(getCaptchaUrl());
+    }
   }
 }
 

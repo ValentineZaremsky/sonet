@@ -95,11 +95,14 @@ export const saveStatus = (status) => async (dispatch) => {
     dispatch(setStatus(status));
 }
 
-export const saveProfile = (profile) => async (dispatch, getState) => {
+export const saveProfile = (profile, setStatus) => async (dispatch, getState) => {
   const userId = getState().auth.userId;
   const data = await profileAPI.saveProfile(profile);
   if (data.resultCode === 0) {
     dispatch(getProfile(userId));
+  } else {
+    setStatus({ error: data.messages })
+    return Promise.reject();
   }
 }
 

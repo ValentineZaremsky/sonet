@@ -8,7 +8,7 @@ import TextError from '../common/TextError/TextError'
 import css from './Login.module.css';
 
 
-const LoginForm = ({login}) => {
+const LoginForm = ({ login, captchaUrl }) => {
   const initialValues = {
     email: '',
     pass: '',
@@ -30,7 +30,6 @@ const LoginForm = ({login}) => {
     };
     login(loginData, submitProps.setStatus);
     submitProps.setSubmitting(false);
-    submitProps.resetForm();
   }
 
   return (
@@ -63,7 +62,18 @@ const LoginForm = ({login}) => {
               <label htmlFor='remember'>Remember me</label>
             </div>
 
-            {apiErrors ? <div>{apiErrors}</div> : null}
+            { apiErrors && <div>{apiErrors}</div> }
+
+            { captchaUrl &&
+              <>
+                <img src={captchaUrl} className={css.captcha} alt="Captcha"/>
+                <div className={css.control}>
+                  <label htmlFor='captcha'>Captcha</label>
+                  <Field type='text' id='captcha' name='captcha' placeholder="Captcha" />
+                  <ErrorMessage name='captcha' component={TextError} />
+                </div>
+              </>
+            }
 
             <button type='submit' disabled={!formik.isValid || formik.isSubmitting}>
               Login
@@ -75,20 +85,21 @@ const LoginForm = ({login}) => {
   )
 }
 
-const Login = ({isAuth, login}) => {
+const Login = ({ isAuth, login, captchaUrl}) => {
   if (isAuth)
-    return <Navigate to='/profile' />
+    return <Navigate to='/' />
   else
     return (
       <div className={css.login}>
         <h1>Log in</h1>
-        <LoginForm login={login}/>
+        <LoginForm login={login} captchaUrl={captchaUrl}/>
       </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuth
+  isAuth:     state.auth.isAuth,
+  captchaUrl: state.auth.captchaUrl
 })
 
 export default connect(mapStateToProps, {login})(Login);

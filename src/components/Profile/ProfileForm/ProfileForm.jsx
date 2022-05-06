@@ -54,11 +54,12 @@ const ProfileForm = ({ profile, saveProfile, disableEdit }) => {
         youtube:   values.youtube,
       }
     };
-    // console.log(profileData);
-    saveProfile(profileData, submitProps.setStatus);
+    saveProfile(profileData, submitProps.setStatus)
+    .then(() => {
+      disableEdit();
+    })
+    .catch(() => {})
     submitProps.setSubmitting(false);
-    disableEdit();
-    // submitProps.resetForm();
   }
 
   return (
@@ -82,7 +83,9 @@ const ProfileForm = ({ profile, saveProfile, disableEdit }) => {
                 </button>
               </div>
             </div>
+
             { apiErrors ? <div>{apiErrors}</div> : null }
+
             <div className={dcss.infoBlock}>
               <div className={dcss.statusBlock}>
                 <div className={css.control} >
