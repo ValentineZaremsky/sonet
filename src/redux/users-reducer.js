@@ -1,5 +1,5 @@
 import { usersAPI, followAPI } from '../api/api'
-import {updateObjectInArray} from "../utils/object-helpers";
+import { updateObjectInArray } from "../utils/object-helpers";
 
 const FOLLOW                 = 'FOLLOW';
 const UNFOLLOW               = 'UNFOLLOW';
@@ -62,13 +62,35 @@ const usersReducer = (state = initialState, action) => {
   }
 }
 
-export const setUsers = (users) => ({ type: SET_USERS, users })
-export const followUser = (userId) => ({ type: FOLLOW, userId })
-export const unfollowUser = (userId) => ({ type: UNFOLLOW, userId })
-export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
-export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
-export const setIsFetching = (isFetching) => ({ type: SET_IS_FETCHING, isFetching })
-export const setFollowingProgress = (isFetching, userId) => ({type: SET_FOLLOWING_PROGRESS, isFetching, userId })
+export const setUsers = (users) => ({
+  type: SET_USERS,
+  users
+})
+export const followUser = (userId) => ({
+  type: FOLLOW,
+  userId
+})
+export const unfollowUser = (userId) => ({
+  type: UNFOLLOW,
+  userId
+})
+export const setCurrentPage = (currentPage) => ({
+  type: SET_CURRENT_PAGE,
+  currentPage
+})
+export const setTotalUsersCount = (totalUsersCount) => ({
+  type: SET_TOTAL_USERS_COUNT,
+  count: totalUsersCount
+})
+export const setIsFetching = (isFetching) => ({
+  type: SET_IS_FETCHING,
+  isFetching
+})
+export const setFollowingProgress = (isFetching, userId) => ({
+  type: SET_FOLLOWING_PROGRESS,
+  isFetching,
+  userId
+})
 
 export const requestUsers = (pageSize, page) => {
   return async (dispatch) => {

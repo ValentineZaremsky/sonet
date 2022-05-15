@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { ReactComponent as UserPhoto } from '../../../assets/icons/avatar-male.svg';
 import css from "./User.module.css";
 
-let User = ({user, followingInProgress, unfollow, follow}) => {
+let User = ({ user, followingInProgress, unfollow, follow }) => {
   return (
     <div className={css.user}>
       <div className={css.leftSide}>

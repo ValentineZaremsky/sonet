@@ -13,15 +13,17 @@ let Users = ({currentPage, totalUsersCount, pageSize, onPageChange, users, ...pr
         pageSize={pageSize}
         half={7}
       />
-      {
-        users.map(u => <User
-          user={u}
-          key={u.id}
-          followingInProgress={props.followingInProgress}
-          unfollow={props.unfollow}
-          follow={props.follow}
-        />)
-      }
+      <div className={css.usersList}>
+        {
+          users.map(u => <User
+            user={u}
+            key={u.id}
+            followingInProgress={props.followingInProgress}
+            unfollow={props.unfollow}
+            follow={props.follow}
+          />)
+        }
+      </div>
     </div>
   )
 }

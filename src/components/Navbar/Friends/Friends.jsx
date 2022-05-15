@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Friends.module.css';
 import Friend from './Friend/Friend';
 
-const Friends = ({friends, isAuth}) => {
+const Friends = ({ friends, isAuth }) => {
   let friendsElements = friends.map(f => {
     return <Friend key={f.id} name={f.name} id={f.id} avatar={f.photos.small} />
   });

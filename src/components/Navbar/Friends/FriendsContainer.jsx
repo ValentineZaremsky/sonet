@@ -9,6 +9,12 @@ class FriendsContainer extends React.Component {
     this.props.requestFriends(this.props.pageSize, this.props.currentPage);
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.friends.length !== prevProps.friends.length ) {
+      this.props.requestFriends(this.props.pageSize, this.props.currentPage);
+    }
+  }
+
   render() {
     return (
       <Friends friends={this.props.friends} isAuth={this.props.isAuth}/>

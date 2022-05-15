@@ -27,8 +27,14 @@ const friendsReducer = (state = initialState, action) => {
   }
 }
 
-export const setFriends = (friends) => ({ type: SET_FRIENDS, friends })
-export const setIsFetching = (isFetching) => ({ type: SET_IS_FETCHING, isFetching })
+export const setFriends = (friends) => ({
+  type: SET_FRIENDS,
+  friends
+})
+export const setIsFetching = (isFetching) => ({
+  type: SET_IS_FETCHING,
+  isFetching
+})
 
 export const requestFriends = (pageSize, page, friend) => async (dispatch) => {
   dispatch(setIsFetching(true));

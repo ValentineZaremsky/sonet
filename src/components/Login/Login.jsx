@@ -12,7 +12,8 @@ const LoginForm = ({ login, captchaUrl }) => {
   const initialValues = {
     email: '',
     pass: '',
-    remember: false
+    remember: false,
+    captcha: '',
   }
 
   const validationSchema = Yup.object({
@@ -24,12 +25,14 @@ const LoginForm = ({ login, captchaUrl }) => {
 
   const onSubmit = (values, submitProps) => {
     let loginData = {
-      email: values.email,
-      password: values.pass,
-      rememberMe: values.remember
+      email:      values.email,
+      password:   values.pass,
+      rememberMe: values.remember,
+      captcha:    values.captcha
     };
     login(loginData, submitProps.setStatus);
     submitProps.setSubmitting(false);
+    submitProps.resetForm();
   }
 
   return (
